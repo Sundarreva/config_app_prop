@@ -1,0 +1,56 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8093/eureka/
+    instance:
+        leaseExpirationDurationInSeconds: 2
+        leaseRenewalIntervalInSeconds: 1
+logging:
+    file:
+        clean-history-on-start: true
+        name: src/main/resources/logs/employeeServiceLogs.log
+    level:
+        com:
+            seveneleven:
+                employeeService: debug
+        org:
+            hibernate:
+                SQL: trace
+                type:
+                    descriptor:
+                        sql: trace
+            springframework: info
+    pattern:
+        console: '%d{dd-MM-yy} %d{HH:mm:ss.SSS} %-20.20thread %5p %-25.25logger{25}
+            %25M %4L %m%n'
+#server:
+#    port: 8092
+    
+spring:
+    cloud:
+      config:
+        uri: http://localhost:8094
+    application:
+        name: employee-service
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/seveneleven?allowPublicKeyRetrieval=true&useSSL=false
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: root
+        username: root
+    devtools:
+        restart:
+            enabled: true
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+management:
+    security:
+        enabled: false
+    endpoint:
+        web:
+            exposure:
+                include: '*'    

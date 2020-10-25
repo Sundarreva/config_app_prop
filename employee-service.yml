@@ -11,8 +11,7 @@ logging:
         name: src/main/resources/logs/employeeServiceLogs.log
     level:
         com:
-            seveneleven:
-                employeeService: debug
+            seveneleven: debug
         org:
             hibernate:
                 SQL: trace
